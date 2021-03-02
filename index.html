@@ -63,13 +63,15 @@
             </tbody>
           </table>
       </div>
+      
+      
       <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Nueva Mascota</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Nueva mascotas</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"  id="btn-close1">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -79,7 +81,7 @@
                 <div class="form-row">
                     <div class="form-row">
                         <div class="col">
-                            <select id="tipo" class="form-control">
+                            <select id="tipo" class="form-control" >
                               <option>Tipo animal</option>
                               <option>Perro</option>
                               <option>Gato</option>
@@ -105,13 +107,36 @@
                 </div>
             </form>
         </div>
+      
+
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal"  id="btn-cerrar">Cerrar</button>
           <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-guardar">Crear</button>
         </div>
       </div>
+      
+    </div>
+    
+  </div>
+ <!-- modal2  -->
+<div class="modal fade" data-backdrop="static" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalCenterTitle">¿Desea eliminar la mascota seleccionada?</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-cerrar5">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-cerrar2">Cerrar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-eliminar2">Eliminar</button>
     </div>
   </div>
+  </div>
+  </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

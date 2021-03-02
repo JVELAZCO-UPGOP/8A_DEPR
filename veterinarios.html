@@ -65,22 +65,22 @@
           </table>
       </div>
       <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Nuevo Veteinario</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+      <div class="modal fade" data-backdrop="static" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Veterinaria</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-close1">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
         <div class="modal-body">
             <form id="form">
               <input type="hidden" id="indice">
                 <div class="form-row">
                   <div class="col">
                     <select class="form-control" id="pais">
-                      <option>Pais</option>
+                      <option>País</option>
                       <option>Mexico</option>
                       <option>Colombia</option>
                       <option>Argentina</option>
@@ -113,6 +113,23 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" data-backdrop="static" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false" >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">¿Desea eliminar la veterinaria seleccionada?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="btn-cerrar5">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="btn-cerrar2">Cerrar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-eliminar2">Eliminar</button>
+      </div>
+    </div>
+    </div>
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
