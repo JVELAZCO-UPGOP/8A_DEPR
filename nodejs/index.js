@@ -1,6 +1,15 @@
 const http = require('http');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
+let recursos = {
+    mascotas: [
+        { tipo: "perro", nombre: "puka", dueno: "Felix" },
+        { tipo: "perro", nombre: "puka", dueno: "Felix" },
+        { tipo: "perro", nombre: "puka", dueno: "Felix" },
+        { tipo: "perro", nombre: "puka", dueno: "Felix" },
+        { tipo: "perro", nombre: "puka", dueno: "Felix" }
+    ],
+};
 const callbackDelServidor = (req, res) => {
     //1. obtener url desde el onjeto resquest
     const urlActual = req.url;
@@ -26,6 +35,9 @@ const callbackDelServidor = (req, res) => {
     req.on('end', () => {
         buffer += decoder.end();
 
+        if (headers['content-type'] === 'application/json') {
+            buffer = JSON.parse(buffer);
+        }
         //3.5 ordenar la data del reqest
         const data = {
             ruta: rutaLimpia,
@@ -37,8 +49,8 @@ const callbackDelServidor = (req, res) => {
         console.log({ data });
         // 3.6 elegir el manejador dependiendo de la ruta y asignarle funcion que el enrutador tiene
         let handler;
-        if (rutaLimpia && enrutador[rutaLimpia]) {
-            handler = enrutador[rutaLimpia];
+        if (rutaLimpia && enrutador[rutaLimpia] && enrutador[rutaLimpia][metodo]) {
+            handler = enrutador[rutaLimpia][metodo];
         } else {
             handler = enrutador.noEncontrado;
         }
@@ -60,8 +72,15 @@ const enrutador = {
     ruta: (data, callback) => {
         callback(200, { mensaje: 'Esta es la /ruta' });
     },
-    usuarios: (data, callback) => {
-        callback(200, [{ nombre: 'usuario 1' }, { nombre: 'usuario 2' }]);
+    mascotas: {
+        get: (data, callback) => {
+            callback(200, recursos.mascotas);
+        },
+        post: (data, callback) => {
+            recursos.mascotas.push(data.payload);
+            callback(201, data.payload);
+
+        },
     },
     noEncontrado: (data, callback) => {
         callback(404, { mensaje: 'No encontrado' });
