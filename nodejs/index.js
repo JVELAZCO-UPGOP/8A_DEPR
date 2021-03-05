@@ -1,7 +1,9 @@
 const http = require('http');
 const url = require('url');
 const StringDecoder = require('string_decoder').StringDecoder;
-let recursos = {
+const enrutador = require('./Enrutador');
+
+global.recursos = {
     mascotas: [
         { tipo: "perro", nombre: "puka", dueno: "Felix" },
         { tipo: "perro", nombre: "puka", dueno: "Felix" },
@@ -38,9 +40,15 @@ const callbackDelServidor = (req, res) => {
         if (headers['content-type'] === 'application/json') {
             buffer = JSON.parse(buffer);
         }
+        //3.4.3 revisat si tiene subrutas en este caso el indice del array
+
+        if (rutaLimpia.indexOf("/") > -1) {
+            var [rutaPrincipal, indice] = rutaLimpia.split("/");
+        }
         //3.5 ordenar la data del reqest
         const data = {
-            ruta: rutaLimpia,
+            indice,
+            ruta: rutaPrincipal || rutaLimpia,
             query,
             metodo,
             headers,
@@ -48,12 +56,17 @@ const callbackDelServidor = (req, res) => {
         };
         console.log({ data });
         // 3.6 elegir el manejador dependiendo de la ruta y asignarle funcion que el enrutador tiene
+
         let handler;
-        if (rutaLimpia && enrutador[rutaLimpia] && enrutador[rutaLimpia][metodo]) {
-            handler = enrutador[rutaLimpia][metodo];
+        if (data.ruta &&
+            enrutador[data.ruta] &&
+            enrutador[data.ruta][metodo]
+        ) {
+            handler = enrutador[data.ruta][metodo];
         } else {
             handler = enrutador.noEncontrado;
         }
+        console.log("handler", handler);
         //4. ejecutar handle manejador para envia la respuesta 
         if (typeof handler === 'function') {
             handler(data, (statusCode = 200, mensaje) => {
@@ -68,24 +81,7 @@ const callbackDelServidor = (req, res) => {
 
     });
 };
-const enrutador = {
-    ruta: (data, callback) => {
-        callback(200, { mensaje: 'Esta es la /ruta' });
-    },
-    mascotas: {
-        get: (data, callback) => {
-            callback(200, recursos.mascotas);
-        },
-        post: (data, callback) => {
-            recursos.mascotas.push(data.payload);
-            callback(201, data.payload);
 
-        },
-    },
-    noEncontrado: (data, callback) => {
-        callback(404, { mensaje: 'No encontrado' });
-    }
-}
 const server = http.createServer(callbackDelServidor);
 
 server.listen(5000, () => {
