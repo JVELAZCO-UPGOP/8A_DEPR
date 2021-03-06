@@ -1,10 +1,5 @@
 const http = require('http');
 const requestHandle = require("./request-handle");
-const recursos = require("./recursos");
-
-global.recursos = recursos;
-
-
 const server = http.createServer(requestHandle);
 
 server.listen(5000, () => {
