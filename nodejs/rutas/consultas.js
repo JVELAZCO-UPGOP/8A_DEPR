@@ -36,7 +36,7 @@ module.exports = function consultasHandler(consultas) {
         delete: (data, callback) => {
             if (typeof data.indice !== "undefined") {
                 if (consultas[data.indice]) {
-                    consultas = duenos.filter(
+                    consultas = consultas.filter(
                         (_consulta, indice) => indice != data.indice
                     );
                     return callback(204, { mensaje: 'elemento con indice ${data.indice} elimimado' });
