@@ -14,4 +14,22 @@ module.exports = {
         { nombre: "Juan", apellido: "Perez", documento: "18080392" }
 
     ],
+    duenos: [
+        { nombre: "Clauida", apellido: "Ramirez", documento: "18080392" },
+        { nombre: "Favio", apellido: "Escobedo", documento: "11010091" },
+        { nombre: "Jesus", apellido: "Mora", documento: "13092209" },
+        { nombre: "Cecila", apellido: "Rios", documento: "19010299" },
+
+    ],
+    consultas: [{
+            mascotas: 0,
+            veterinario: 0,
+            fechaCreacion: new Date(),
+            fechaEdicion: new Date(),
+            historial: '',
+            diagnostico: "",
+        },
+
+
+    ],
 };
