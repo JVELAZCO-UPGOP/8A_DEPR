@@ -11,86 +11,86 @@ const titulo = document.getElementById('exampleModalCenterTitle');
 const modal = document.getElementById('exampleModalCenter');
 
 
-let mascotas=[
-    {
-        tipo: "Perro",
-        nombre: "manchas",
-        dueno: "Esteban"
-    },
-    {
-        tipo: "Gato",
-        nombre: "Loky",
-        dueno: "Felix"
-    }
-];
+let mascotas = [];
 
-function listarMascotas() {
-  const htmlMascotas = mascotas.map((mascota, index)=>`<tr>
-      <th scope="row">${index}</th>
-      <td>${mascota.tipo}</td>
-      <td>${mascota.nombre}</td>
-      <td>${mascota.dueno}</td>
-      <td>
-          <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-info editar"><i class="fas fa-edit"></i></button>
-              <button type="button" class="btn btn-danger eliminar"><i class="far fa-trash-alt"></i></button>
-          </div>
-      </td>
-    </tr>`).join("");
-    listaMascotas.innerHTML = htmlMascotas;
-    Array.from(document.getElementsByClassName('editar')).forEach((botonEditar, index)=>botonEditar.onclick = editar(index));
-    Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar, index)=>botonEliminar.onclick = eliminar(index));
+async function listarMascotas() {
+    try {
+        const respuesta = await fetch('http://localhost:5000/mascotas');
+        const mascotasDelServe = await respuesta.json();
+        if (Array.isArray(mascotasDelServe) && mascotasDelServe.length > 0) {
+            mascotas = mascotasDelServe;
+        }
+        const htmlMascotas = mascotas.map((mascota, index) => `<tr>
+        <th scope="row">${index}</th>
+        <td>${mascota.tipo}</td>
+        <td>${mascota.nombre}</td>
+        <td>${mascota.dueno}</td>
+        <td>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-info editar"><i class="fas fa-edit"></i></button>
+                <button type="button" class="btn btn-danger eliminar"><i class="far fa-trash-alt"></i></button>
+            </div>
+        </td>
+      </tr>`).join("");
+        listaMascotas.innerHTML = htmlMascotas;
+        Array.from(document.getElementsByClassName('editar')).forEach((botonEditar, index) => botonEditar.onclick = editar(index));
+        Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar, index) => botonEliminar.onclick = eliminar(index));
+    } catch (error) {
+        throw error;
+    }
+
+
 }
 
 function enviarDatos(evento) {
     evento.preventDefault();
     const datos = {
-      tipo: tipo.value,
-      nombre: nombre.value,
-      dueno: dueno.value
+        tipo: tipo.value,
+        nombre: nombre.value,
+        dueno: dueno.value
     };
     const accion = btnGuardar.innerHTML;
-    switch(accion) {
-      case 'Editar':
-        mascotas[indice.value] = datos;
-        break;
-      default:
-        mascotas.push(datos);
-        break;
+    switch (accion) {
+        case 'Editar':
+            mascotas[indice.value] = datos;
+            break;
+        default:
+            mascotas.push(datos);
+            break;
     }
-   listarMascotas();
-   resetModal();
+    listarMascotas();
+    resetModal();
 }
 
 function editar(index) {
-  return function cuandoCliqueoEditar() {
-    btnGuardar.innerHTML = 'Editar';
-    titulo.innerHTML = "Editar Mascota";
-    $('#exampleModalCenter').modal('toggle');
-    const mascota = mascotas[index];
-    nombre.value = mascota.nombre;
-    dueno.value = mascota.dueno;
-    tipo.value = mascota.tipo;
-    indice.value = index;
+    return function cuandoCliqueoEditar() {
+        btnGuardar.innerHTML = 'Editar';
+        titulo.innerHTML = "Editar Mascota";
+        $('#exampleModalCenter').modal('toggle');
+        const mascota = mascotas[index];
+        nombre.value = mascota.nombre;
+        dueno.value = mascota.dueno;
+        tipo.value = mascota.tipo;
+        indice.value = index;
 
-    $("#btn-cerrar").on("click",function() {
-      nombre.value = '';
-      dueno.value = 'Dueño';
-      tipo.value = 'Tipo animal';
-      indice.value = '';
-      titulo.innerHTML = "Nueva Mascota";
-      btnGuardar.innerHTML = 'Guardar';
-   });
+        $("#btn-cerrar").on("click", function() {
+            nombre.value = '';
+            dueno.value = 'Dueño';
+            tipo.value = 'Tipo animal';
+            indice.value = '';
+            titulo.innerHTML = "Nueva Mascota";
+            btnGuardar.innerHTML = 'Guardar';
+        });
 
-  $("#btn-close1").on("click",function() {
-      nombre.value = '';
-      dueno.value = 'Dueño';
-      tipo.value = 'Tipo animal';
-      indice.value = '';
-      titulo.innerHTML = "Nueva Mascota";
-      btnGuardar.innerHTML = 'Guardar';
-      });
-  }
+        $("#btn-close1").on("click", function() {
+            nombre.value = '';
+            dueno.value = 'Dueño';
+            tipo.value = 'Tipo animal';
+            indice.value = '';
+            titulo.innerHTML = "Nueva Mascota";
+            btnGuardar.innerHTML = 'Guardar';
+        });
+    }
 }
 
 function resetModal() {
@@ -101,50 +101,49 @@ function resetModal() {
     btnGuardar.innerHTML = 'Guardar';
 }
 
-function eliminar(index){
- 
-   return function clickEnEliminar() {
-    $('#exampleModalCenter2').modal('toggle');
-    const mascota = mascotas[index];
-    nombre.value = mascota.nombre;
-    dueno.value = mascota.dueno;
-    tipo.value = mascota.tipo;
-    indice.value = index;
+function eliminar(index) {
 
-    $("#btn-eliminar2").on("click",function() {
-      mascotas = mascotas.filter((mascota, indiceMascota)=>indiceMascota !== index);
-      listarMascotas();
-      nombre.value = '';
-      dueno.value = 'Dueño';
-      tipo.value = 'Tipo animal';
-      indice.value = '';
-      titulo.innerHTML = "Nueva Mascota";
-      });
-
-      $("#btn-cerrar2").on("click",function() {
-        nombre.value = '';
-        dueno.value = 'Dueño';
-        tipo.value = 'Tipo animal';
+    return function clickEnEliminar() {
+        $('#exampleModalCenter2').modal('toggle');
+        const mascota = mascotas[index];
+        nombre.value = mascota.nombre;
+        dueno.value = mascota.dueno;
+        tipo.value = mascota.tipo;
         indice.value = index;
-        titulo.innerHTML = "Nueva Mascota";
-        btnGuardar.innerHTML = 'Guardar';
+
+        $("#btn-eliminar2").on("click", function() {
+            mascotas = mascotas.filter((mascota, indiceMascota) => indiceMascota !== index);
+            listarMascotas();
+            nombre.value = '';
+            dueno.value = 'Dueño';
+            tipo.value = 'Tipo animal';
+            indice.value = '';
+            titulo.innerHTML = "Nueva Mascota";
         });
 
-        $("#btn-cerrar5").on("click",function() {
-          nombre.value = '';
-          dueno.value = 'Dueño';
-          tipo.value = 'Tipo animal';
-          indice.value = '';
-          titulo.innerHTML = "Nueva Mascota";
-          btnGuardar.innerHTML = 'Guardar';
-          });
-        
+        $("#btn-cerrar2").on("click", function() {
+            nombre.value = '';
+            dueno.value = 'Dueño';
+            tipo.value = 'Tipo animal';
+            indice.value = index;
+            titulo.innerHTML = "Nueva Mascota";
+            btnGuardar.innerHTML = 'Guardar';
+        });
+
+        $("#btn-cerrar5").on("click", function() {
+            nombre.value = '';
+            dueno.value = 'Dueño';
+            tipo.value = 'Tipo animal';
+            indice.value = '';
+            titulo.innerHTML = "Nueva Mascota";
+            btnGuardar.innerHTML = 'Guardar';
+        });
+
     }
 }
-  
+
 
 listarMascotas();
-
 
 
 form.onsubmit = enviarDatos;
