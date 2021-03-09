@@ -11,16 +11,19 @@ module.exports = (req, res) => {
     const rutaLimpia = ruta.replace(/^\/+|\/+$/g, '');
     //3.1 Obtener el metodo http escribiendo los HEADERS
     const metodo = req.method.toLowerCase();
-    //3.1.1 dar permisos de CORS
+    //3.1.1 dar permisos de CORS escribiendo los headers
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Request-Methods", "OPTIONS,GET,PUT,DELETE,PUST");
     res.setHeader("Access-Control-Allow-Headers", "*");
-    //3.1.2 Da la respuesta iinmediata cundo el metodo sea options
+    res.setHeader(
+        "Access-Control-Allow-Methods",
+        "OPTIONS, GET, PUT, DELETE, POST"
+    );
+    //3.1.2 dar respuesta inmediata cuando el método sea options
     if (metodo === "options") {
-        res.writeHead(200);
+        res.writeHead(204);
         res.end();
         return;
-    };
+    }
     //3.2 Obtener variables de quet url
     const { query = {} } = urlParseada;
     //3.3 Obtener heades

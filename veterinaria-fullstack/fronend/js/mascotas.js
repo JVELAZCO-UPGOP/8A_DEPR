@@ -9,13 +9,13 @@ const btnCerrar = document.getElementById('btn-cerrar');
 const indice = document.getElementById('indice');
 const titulo = document.getElementById('exampleModalCenterTitle');
 const modal = document.getElementById('exampleModalCenter');
-
+const url = "http://localhost:5000/mascotas";
 
 let mascotas = [];
 
 async function listarMascotas() {
     try {
-        const respuesta = await fetch('http://localhost:5000/mascotas');
+        const respuesta = await fetch(url);
         const mascotasDelServe = await respuesta.json();
         if (Array.isArray(mascotasDelServe) && mascotasDelServe.length > 0) {
             mascotas = mascotasDelServe;
@@ -42,24 +42,38 @@ async function listarMascotas() {
 
 }
 
-function enviarDatos(evento) {
+async function enviarDatos(evento) {
     evento.preventDefault();
-    const datos = {
-        tipo: tipo.value,
-        nombre: nombre.value,
-        dueno: dueno.value
-    };
-    const accion = btnGuardar.innerHTML;
-    switch (accion) {
-        case 'Editar':
+    try {
+        const datos = {
+            tipo: tipo.value,
+            nombre: nombre.value,
+            dueno: dueno.value,
+        };
+        let method = "POST";
+        let urlEnvio = url;
+        const accion = btnGuardar.innerHTML;
+        if (accion === "Editar") {
+            method = "PUT";
             mascotas[indice.value] = datos;
-            break;
-        default:
-            mascotas.push(datos);
-            break;
+            urlEnvio = `${url}/${indice.value}`;
+        }
+        const respuesta = await fetch(urlEnvio, {
+            method,
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(datos),
+            mode: "cors",
+        });
+        if (respuesta.ok) {
+            listarMascotas();
+            resetModal();
+        }
+    } catch (error) {
+        console.log({ error });
+        $(".alert").show();
     }
-    listarMascotas();
-    resetModal();
 }
 
 function editar(index) {
@@ -141,7 +155,6 @@ function eliminar(index) {
 
     }
 }
-
 
 listarMascotas();
 
