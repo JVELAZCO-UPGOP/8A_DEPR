@@ -16,30 +16,43 @@ let mascotas = [];
 async function listarMascotas() {
     try {
         const respuesta = await fetch(url);
-        const mascotasDelServe = await respuesta.json();
-        if (Array.isArray(mascotasDelServe) && mascotasDelServe.length > 0) {
-            mascotas = mascotasDelServe;
+        const mascotasDelServer = await respuesta.json();
+        if (Array.isArray(mascotasDelServer)) {
+            mascotas = mascotasDelServer;
         }
-        const htmlMascotas = mascotas.map((mascota, index) => `<tr>
-        <th scope="row">${index}</th>
-        <td>${mascota.tipo}</td>
-        <td>${mascota.nombre}</td>
-        <td>${mascota.dueno}</td>
-        <td>
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-info editar"><i class="fas fa-edit"></i></button>
-                <button type="button" class="btn btn-danger eliminar"><i class="far fa-trash-alt"></i></button>
-            </div>
-        </td>
-      </tr>`).join("");
-        listaMascotas.innerHTML = htmlMascotas;
-        Array.from(document.getElementsByClassName('editar')).forEach((botonEditar, index) => botonEditar.onclick = editar(index));
-        Array.from(document.getElementsByClassName('eliminar')).forEach((botonEliminar, index) => botonEliminar.onclick = eliminar(index));
+        if (mascotas.length > 0) {
+            const htmlMascotas = mascotas
+                .map(
+                    (mascota, index) => `<tr>
+      <th scope="row">${index}</th>
+      <td>${mascota.tipo}</td>
+      <td>${mascota.nombre}</td>
+      <td>${mascota.dueno}</td>
+      <td>
+          <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" class="btn btn-info editar"><i class="fas fa-edit"></i></button>
+              <button type="button" class="btn btn-danger eliminar"><i class="far fa-trash-alt"></i></button>
+          </div>
+      </td>
+    </tr>`
+                )
+                .join("");
+            listaMascotas.innerHTML = htmlMascotas;
+            Array.from(document.getElementsByClassName("editar")).forEach(
+                (botonEditar, index) => (botonEditar.onclick = editar(index))
+            );
+            Array.from(document.getElementsByClassName("eliminar")).forEach(
+                (botonEliminar, index) => (botonEliminar.onclick = eliminar(index))
+            );
+            return;
+        }
+        listaMascotas.innerHTML = `<tr>
+        <td colspan="5" class="lista-vacia">No hay mascotas</td>
+      </tr>`;
     } catch (error) {
-        throw error;
+        console.log({ error });
+        $(".alert").show();
     }
-
-
 }
 
 async function enviarDatos(evento) {
@@ -116,48 +129,24 @@ function resetModal() {
 }
 
 function eliminar(index) {
-
-    return function clickEnEliminar() {
-        $('#exampleModalCenter2').modal('toggle');
-        const mascota = mascotas[index];
-        nombre.value = mascota.nombre;
-        dueno.value = mascota.dueno;
-        tipo.value = mascota.tipo;
-        indice.value = index;
-
-        $("#btn-eliminar2").on("click", function() {
-            mascotas = mascotas.filter((mascota, indiceMascota) => indiceMascota !== index);
-            listarMascotas();
-            nombre.value = '';
-            dueno.value = 'Dueño';
-            tipo.value = 'Tipo animal';
-            indice.value = '';
-            titulo.innerHTML = "Nueva Mascota";
-        });
-
-        $("#btn-cerrar2").on("click", function() {
-            nombre.value = '';
-            dueno.value = 'Dueño';
-            tipo.value = 'Tipo animal';
-            indice.value = index;
-            titulo.innerHTML = "Nueva Mascota";
-            btnGuardar.innerHTML = 'Guardar';
-        });
-
-        $("#btn-cerrar5").on("click", function() {
-            nombre.value = '';
-            dueno.value = 'Dueño';
-            tipo.value = 'Tipo animal';
-            indice.value = '';
-            titulo.innerHTML = "Nueva Mascota";
-            btnGuardar.innerHTML = 'Guardar';
-        });
-
-    }
+    const urlEnvio = `${url}/${index}`;
+    return async function clickEnEliminar() {
+        try {
+            const respuesta = await fetch(urlEnvio, {
+                method: "DELETE",
+            });
+            if (respuesta.ok) {
+                listarMascotas();
+                resetModal();
+            }
+        } catch (error) {
+            console.log({ error });
+            $(".alert").show();
+        }
+    };
 }
 
 listarMascotas();
-
 
 form.onsubmit = enviarDatos;
 btnGuardar.onclick = enviarDatos;
