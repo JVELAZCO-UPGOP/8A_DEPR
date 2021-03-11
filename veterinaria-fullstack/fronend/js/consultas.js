@@ -15,8 +15,9 @@
                       (consulta, indice) =>
                       `<tr>
                 <th scope="row">${indice}</th>
-                <td>${consulta.mascotas}</td>
-                <td>${consulta.veterinario} </td>
+                <td>${consulta.mascota.nombre}</td>
+                <td>${consulta.veterinario.nombre} ${consulta.veterinario.apellido} </td>
+                <td>${consulta.diagnostico}</td>
                 <td>${consulta.fechaCreacion}</td>
                 <td>${consulta.fechaEdicion}</td>
                 

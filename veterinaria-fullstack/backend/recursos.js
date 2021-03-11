@@ -22,12 +22,12 @@ module.exports = {
 
     ],
     consultas: [{
-            mascotas: 0,
+            mascota: 0,
             veterinario: 0,
             fechaCreacion: new Date(),
             fechaEdicion: new Date(),
             historial: '',
-            diagnostico: "",
+            diagnostico: "Diagnostico",
         },
 
 
