@@ -12,9 +12,11 @@ module.exports = function consultasHandler({ consultas, veterinarios, mascotas }
             }
             const consultasConRelaciones = consultas.map((consulta) => ({
                 ...consulta,
-                mascota: mascotas[consulta.mascota],
-                veterinario: veterinarios[consulta.veterinario],
-
+                mascota: {...mascotas[consulta.mascota], id: consulta.mascota },
+                veterinario: {
+                    ...veterinarios[consulta.veterinario],
+                    id: consulta.veterinario,
+                },
             }));
             callback(200, consultasConRelaciones);
         },
