@@ -128,49 +128,23 @@ function resetModal() {
 }
 
 function eliminar(index) {
-
-    return function clickEnEliminar() {
-        $('#exampleModalCenter2').modal('toggle');
-        const dueno = duenos[index];
-        indice.value = index;
-        nombre.value = dueno.nombre;
-        apellido.value = dueno.apellido;
-        pais.value = dueno.pais;
-        identificacion.value = dueno.identificacion;
-
-        $("#btn-eliminar2").on("click", function() {
-            duenos = duenos.filter((dueno, indice) => indice !== index);
-            listarDuenos();
-            indice.value = '';
-            nombre.value = '';
-            apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = '';
-            titulo.innerHTML = "Nuevo Dueño";
-            btnGuardar.innerHTML = 'Guardar';
-        });
-
-        $("#btn-cerrar2").on("click", function() {
-            indice.value = '';
-            nombre.value = '';
-            apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = '';
-            titulo.innerHTML = "Nuevo Dueño";
-            btnGuardar.innerHTML = 'Guardar';
-        });
-
-        $("#btn-cerrar5").on("click", function() {
-            indice.value = '';
-            nombre.value = '';
-            apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = '';
-            btnGuardar.innerHTML = 'Crear'
-            titulo.innerHTML = "Nuevo Dueño";
-        });
-    }
+    const urlEnvio = `${url}/${index}`;
+    return async function clickEnEliminar() {
+        try {
+            const respuesta = await fetch(urlEnvio, {
+                method: "DELETE",
+                mode: "cors",
+            });
+            if (respuesta.ok) {
+                listarDuenos();
+            }
+        } catch (error) {
+            console.log({ error });
+            $(".alert").show();
+        }
+    };
 }
+
 
 
 listarDuenos();
