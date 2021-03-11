@@ -1,7 +1,6 @@
 const listaVeterinarios = document.getElementById('lista-veterinarios');
-const pais = document.getElementById('pais');
 const nombre = document.getElementById('nombre');
-const identificacion = document.getElementById('identificacion');
+const documento = document.getElementById('documento');
 const apellido = document.getElementById('apellido');
 const form = document.getElementById('form');
 const btnGuardar = document.getElementById('btn-guardar');
@@ -95,15 +94,13 @@ function editar(index) {
         indice.value = index;
         nombre.value = veterinario.nombre;
         apellido.value = veterinario.apellido;
-        país.value = veterinario.país;
-        identificacion.value = veterinario.identificacion;
+        documento.value = veterinario.documento;
 
         $("#btn-cerrar").on("click", function() {
             indice.value = '';
             nombre.value = '';
             apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = 'Identificacion';
+            documento.value = 'Documento';
             btnGuardar.innerHTML = 'Crear'
             titulo.innerHTML = "Nueva Veterinario";
         });
@@ -112,8 +109,7 @@ function editar(index) {
             indice.value = '';
             nombre.value = '';
             apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = 'Identificacion';
+            documento.value = 'Documento';
             btnGuardar.innerHTML = 'Crear'
             titulo.innerHTML = "Nueva Veterinario";
         });
