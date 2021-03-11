@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <title>VeterinariaNileve!</title>
 </head>
@@ -44,72 +44,91 @@
                 </form>
             </div>
         </nav>
+        <!-- fin NAV -->
         <div class="actions-menu">
-            <h1>Consultas</h1>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-            Nueva
-          </button>
+            <div class="actions-menu-content">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Nueva
+                </button>
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <strong>Oops!</strong> Algo hicimos mal, por favor vuelve a intentarlo!.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         </div>
-        <table class="table table-hover">
+        <table class="table table-stripped table-hover">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Tipo</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Dueño</th>
+                    <th scope="col">Mascota</th>
+                    <th scope="col">Veterinari@</th>
+                    <th scope="col">Diagnostico</th>
+                    <th scope="col">Creado</th>
+                    <th scope="col">Editado</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
-            <tbody id="lista-mascotas">
+            <tbody id="lista-consultas">
 
             </tbody>
         </table>
     </div>
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Nueva Mascota</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Nueva Mascota</h5>
+                    <div class="alert alert-warning alert-dismissible" role="alert">
+                        Te faltan datos!
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                    </div>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                <span aria-hidden="true">&times;</span>
+              </button>
                 </div>
+
                 <div class="modal-body">
-                    <form id="form">
-                        <input type="hidden" id="indice">
+                    <form class="needs-validation" id="formulario">
+                        <input type="hidden" id="indice" />
                         <div class="form-row">
-                            <div class="form-row">
-                                <div class="col">
-                                    <select id="tipo" class="form-control">
-                              <option>Tipo animal</option>
-                              <option>Perro</option>
-                              <option>Gato</option>
-                              <option>Conejo</option>
-                              <option>Tortuga</option>
-                              <option>Otro</option>
+                            <div class="col">
+                                <select class="form-control" id="mascota">
+                              <option value="">Seleccione Mascota</option>
                             </select>
-                                </div>
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="col">
-                                <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Nombre">
+                                <select class="form-control" id="veterinaria">
+                              <option value="">Seleccione Veterinari@</option>
+                            </select>
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="col">
-                                <select class="form-control" id="dueno">
-                      <option>Dueño</option>
-                      <option>Esteban</option>
-                      <option>Julian</option>
-                      <option>Jhon</option>
-                      <option>Felix</option>
-                      <option>Otro</option>
-                    </select>
+                                <textarea id="historia" class="form-control" placeholder="Historia"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <select class="form-control" id="diagnostico">
+                              <option value="">Seleccionar Diagnostico</option>
+                              <option>Prurito de piel (sarna)</option>
+                              <option>Moquillo</option>
+                              <option>Trauma cefálico</option>
+                              <option>Parvovirosis</option>
+                            </select>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn-guardar">Crear</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="btn-guardar">Crear</button>
                 </div>
             </div>
         </div>
@@ -120,7 +139,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/releases/v5.15.2/js/all.js" data-auto-replace-svg="nest"></script>
-    <script src="/js/mascotas.js"></script>
+    <script src="./js/consultas.js"></script>
 </body>
 
 </html>
