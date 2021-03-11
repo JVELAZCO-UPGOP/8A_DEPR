@@ -176,6 +176,7 @@ async function enviarDatos(evento) {
     }
 }
 
+
 function resetModal() {
     btnGuardar.innerHTML = "Crear";
     [indice, mascota, veterinario, historial, diagnostico].forEach(
