@@ -86,6 +86,7 @@ async function enviarDatos(evento) {
     }
 }
 
+
 function editar(index) {
     return function cuandoCliqueo() {
         btnGuardar.innerHTML = 'Editar'
@@ -102,8 +103,7 @@ function editar(index) {
             indice.value = '';
             nombre.value = '';
             apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = '';
+            documento.value = '';
             btnGuardar.innerHTML = 'Crear'
             titulo.innerHTML = "Nuevo Dueño";
         });
@@ -112,8 +112,7 @@ function editar(index) {
             indice.value = '';
             nombre.value = '';
             apellido.value = '';
-            pais.value = 'País';
-            identificacion.value = '';
+            documento.value = '';
             btnGuardar.innerHTML = 'Crear'
             titulo.innerHTML = "Nuevo Dueño";
         });
@@ -124,7 +123,7 @@ function resetModal() {
     indice.value = '';
     nombre.value = '';
     apellido.value = '';
-    identificacion.value = '';
+    documento.value = '';
     btnGuardar.innerHTML = 'Crear'
 }
 
