@@ -15,7 +15,7 @@ let consultas = [];
 let mascotas = [];
 let veterinarios = [];
 
-const url = "https://veterinaria-backend.now.sh";
+const url = "https://veterinaria-fronend.vercel.app";
 
 async function listarConsultas() {
     const entidad = "consultas";
