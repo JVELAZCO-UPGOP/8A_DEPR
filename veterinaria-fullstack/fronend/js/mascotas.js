@@ -9,7 +9,7 @@ const btnCerrar = document.getElementById('btn-cerrar');
 const indice = document.getElementById('indice');
 const titulo = document.getElementById('exampleModalCenterTitle');
 const modal = document.getElementById('exampleModalCenter');
-const url = "https://veterinaria-fronend.vercel.app/mascotas";
+const url = "https://veterinaria-backend-pink.vercel.app/mascotas";
 
 let mascotas = [];
 
