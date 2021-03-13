@@ -15,7 +15,7 @@ let consultas = [];
 let mascotas = [];
 let veterinarios = [];
 
-const url = "http://localhost:5000";
+const url = "https://veterinaria-backend.now.sh";
 
 async function listarConsultas() {
     const entidad = "consultas";
