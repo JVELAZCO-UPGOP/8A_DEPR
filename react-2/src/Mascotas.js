@@ -17,8 +17,8 @@ function Mascotas() {
         aria - expanded = "false"
         aria - label = "Toggle navigation" >
         <
-        span className = "navbar-toggler-icon" > < /span>   < /
-        button > <
+        span className = "navbar-toggler-icon" > < /span>   <
+        /button>   <
         div className = "collapse navbar-collapse"
         id = "navbarColor03" >
         <
@@ -28,24 +28,24 @@ function Mascotas() {
         <
         a className = "nav-link"
         href = "/index.html" >
-        Mascotas < span class = "sr-only" > (current) < /span>  < /
-        a > <
+        Mascotas < span class = "sr-only" > (current) < /span>  <
+        /a>  <
         /li>   <
         li className = "nav-item" >
         <
         a className = "nav-link"
-        href = "/veterinarios.html" > Veterinarios < /a>   < /
-        li > <
+        href = "/veterinarios.html" > Veterinarios < /a>   <
+        /li>   <
         li className = "nav-item" >
         <
         a className = "nav-link"
-        href = "/consultas.html" > Consultas < /a>   < /
-        li > <
+        href = "/consultas.html" > Consultas < /a>   <
+        /li>  <
         li className = "nav-item" >
         <
         a className = "nav-link"
-        href = "/duenos.html" > Dueños < /a>  < /
-        li > <
+        href = "/duenos.html" > Dueños < /a>  <
+        /li>   <
         /ul>  <
         form className = "form-inline" >
         <
@@ -55,10 +55,10 @@ function Mascotas() {
         aria - label = "Search" / >
         <
         button className = "btn btn-outline-primary my-2 my-sm-0"
-        type = "submit" > Search < /button>  < /
-        form > <
-        /div>  < /
-        nav > <
+        type = "submit" > Search < /button>  <
+        /form>   <
+        /div>  <
+        /nav>  <
         div className = "actions-menu" >
         <
         h1 > Mascotas < /h1>  <
@@ -79,10 +79,10 @@ function Mascotas() {
         data - dismiss = "alert"
         aria - label = "Close" >
         <
-        span aria - hidden = "true" > & times; < /span>   < /
-        button > <
-        /div>  < /
-        div > <
+        span aria - hidden = "true" > & times; < /span>   <
+        /button>   <
+        /div>  <
+        /div>   <
         /div>   <
         table className = "table table-stripped table-hover" >
         <
@@ -94,13 +94,13 @@ function Mascotas() {
         th scope = "col" > Tipo < /th>  <
         th scope = "col" > Nombre < /th>   <
         th scope = "col" > Dueño < /th>   <
-        th scope = "col" > < /th>   < /
-        tr > <
+        th scope = "col" > < /th>   <
+        /tr>   <
         /thead>   <
         tbody id = "lista-mascotas" >
         <
-        /tbody>   < /
-        table > <
+        /tbody>   <
+        /table>   <
         /div>  <
         div class = "modal fade"
         id = "exampleModalCenter"
@@ -123,8 +123,8 @@ function Mascotas() {
         data - dismiss = "modal"
         aria - label = "Close" >
         <
-        span aria - hidden = "true" > & times; < /span>  < /
-        button > <
+        span aria - hidden = "true" > & times; < /span>  <
+        /button>   <
         /div>  <
         div class = "modal-body" >
         <
@@ -144,10 +144,10 @@ function Mascotas() {
         option > Perro < /option>   <
         option > Gato < /option>   <
         option > Pájaro < /option>   <
-        option > Otro < /option>   < /
-        select > <
-        /div>   < /
-        div > <
+        option > Otro < /option>   <
+        /select>   <
+        /div>   <
+        /div>  <
         div class = "form-row" >
         <
         div class = "col" >
@@ -169,12 +169,12 @@ function Mascotas() {
         option > Julián < /option>   <
         option > Jhon < /option>   <
         option > Felix < /option>   <
-        option > Camilo < /option>   < /
-        select > <
-        /div>   < /
-        div > <
-        /form>   < /
-        div > <
+        option > Camilo < /option>   <
+        /select>   <
+        /div>   <
+        /div>   <
+        /form>   <
+        /div>   <
         div class = "modal-footer" >
         <
         button type = "button"
@@ -183,10 +183,10 @@ function Mascotas() {
         button type = "button"
         class = "btn btn-primary"
         data - dismiss = "modal"
-        id = "btn-guardar" > Crear < /button>   < /
-        div > <
-        /div>   < /
-        div > <
-        /div>  < /
-        div > )
-}
+        id = "btn-guardar" > Crear < /button>   <
+        /div>   <
+        /div>   <
+        /div>   <
+        /div>  <
+        /div>)
+    }
