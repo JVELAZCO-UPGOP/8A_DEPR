@@ -3,12 +3,14 @@ import React from "react";
 function Mascotas() {
 
     return ( <
+        >
+        <
         div className = "container" >
         <
         nav className = "navbar navbar-dark bg-dark navbar-expand-lg " >
         <
         a className = "navbar-brand"
-        href = "/index.html" > VETERINARIA < /a>   <
+        href = "/index.html" > VETERINARIA < /a>  <
         button className = "navbar-toggler"
         type = "button"
         data - toggle = "collapse"
@@ -17,8 +19,8 @@ function Mascotas() {
         aria - expanded = "false"
         aria - label = "Toggle navigation" >
         <
-        span className = "navbar-toggler-icon" > < /span>   <
-        /button>   <
+        span className = "navbar-toggler-icon" > < /span>  <
+        /button> <
         div className = "collapse navbar-collapse"
         id = "navbarColor03" >
         <
@@ -26,26 +28,25 @@ function Mascotas() {
         <
         li className = "nav-item active" >
         <
-        a className = "nav-link"
-        href = "/index.html" >
-        Mascotas < span class = "sr-only" > (current) < /span>  <
-        /a>  <
-        /li>   <
-        li className = "nav-item" >
+        a claclassNamess = "nav-link"
+        href = "/index.html" > Mascotas < span class = "sr-only" > (current) < /span></a >
         <
-        a className = "nav-link"
-        href = "/veterinarios.html" > Veterinarios < /a>   <
-        /li>   <
-        li className = "nav-item" >
-        <
-        a className = "nav-link"
-        href = "/consultas.html" > Consultas < /a>   <
         /li>  <
         li className = "nav-item" >
         <
         a className = "nav-link"
-        href = "/duenos.html" > Dueños < /a>  <
-        /li>   <
+        href = "/veterinarios.html" > Veterinarios < /a>  <
+        /li>  <
+        li className = "nav-item" >
+        <
+        a className = "nav-link"
+        href = "/consultas.html" > Consultas < /a>  <
+        /li>  <
+        li className = "nav-item" >
+        <
+        a className = "nav-link"
+        href = "/duenos.html" > Dueños < /a> <
+        /li>  <
         /ul>  <
         form className = "form-inline" >
         <
@@ -56,9 +57,11 @@ function Mascotas() {
         <
         button className = "btn btn-outline-primary my-2 my-sm-0"
         type = "submit" > Search < /button>  <
-        /form>   <
+        /form>  <
         /div>  <
-        /nav>  <
+        /nav>
+
+        <
         div className = "actions-menu" >
         <
         h1 > Mascotas < /h1>  <
@@ -69,21 +72,21 @@ function Mascotas() {
         data - toggle = "modal"
         data - target = "#exampleModalCenter" >
         Nueva <
-        /button>   <
+        /button>  <
         div className = "alert alert-danger alert-dismissible"
         role = "alert" >
         <
         strong > Oops! < /strong> Algo hicimos mal, por favor vuelve a intentarlo!.  <
         button type = "button"
-        class = "close"
+        className = "close"
         data - dismiss = "alert"
         aria - label = "Close" >
         <
-        span aria - hidden = "true" > & times; < /span>   <
-        /button>   <
+        span aria - hidden = "true" > & times; < /span>  <
+        /button>  <
         /div>  <
-        /div>   <
-        /div>   <
+        /div>  <
+        /div>  <
         table className = "table table-stripped table-hover" >
         <
         thead className = "thead-dark" >
@@ -91,102 +94,106 @@ function Mascotas() {
         tr >
         <
         th scope = "col" > # < /th>  <
-        th scope = "col" > Tipo < /th>  <
-        th scope = "col" > Nombre < /th>   <
-        th scope = "col" > Dueño < /th>   <
-        th scope = "col" > < /th>   <
-        /tr>   <
-        /thead>   <
+        th scope = "col" > Tipo < /th> <
+        th scope = "col" > Nombre < /th>  <
+        th scope = "col" > Dueño < /th>  <
+        th scope = "col" > < /th>  <
+        /tr>  <
+        /thead>  <
         tbody id = "lista-mascotas" >
         <
-        /tbody>   <
-        /table>   <
-        /div>  <
-        div class = "modal fade"
+        /tbody>  <
+        /table>  <
+        /div> 
+
+        <
+        div className = "modal fade"
         id = "exampleModalCenter"
         tabindex = "-1"
         role = "dialog"
         aria - labelledby = "exampleModalCenterTitle"
         aria - hidden = "true" >
         <
-        div class = "modal-dialog modal-dialog-centered"
+        div className = "modal-dialog modal-dialog-centered"
         role = "document" >
         <
-        div class = "modal-content" >
+        div className = "modal-content" >
         <
-        div class = "modal-header" >
+        div className = "modal-header" >
         <
-        h5 class = "modal-title"
-        id = "exampleModalCenterTitle" > Nueva Mascota < /h5>   <
+        h5 className = "modal-title"
+        id = "exampleModalCenterTitle" > Nueva Mascota < /h5>  <
         button type = "button"
-        class = "close"
+        className = "close"
         data - dismiss = "modal"
         aria - label = "Close" >
         <
         span aria - hidden = "true" > & times; < /span>  <
-        /button>   <
+        /button>  <
         /div>  <
-        div class = "modal-body" >
+        div className = "modal-body" >
         <
         form id = "form" >
         <
         input type = "hidden"
-        id = "indice" >
+        id = "indice" / >
         <
-        div class = "form-row" >
+        div className = "form-row" >
         <
-        div class = "col" >
+        div className = "col" >
         <
         select id = "tipo"
-        class = "form-control" >
+        className = "form-control" >
         <
-        option > Tipo animal < /option>   <
-        option > Perro < /option>   <
-        option > Gato < /option>   <
-        option > Pájaro < /option>   <
-        option > Otro < /option>   <
-        /select>   <
-        /div>   <
+        option > Tipo animal < /option>  <
+        option > Perro < /option>  <
+        option > Gato < /option>  <
+        option > Pájaro < /option>  <
+        option > Otro < /option>  <
+        /select>  <
         /div>  <
-        div class = "form-row" >
+        /div>  <
+        div className = "form-row" >
         <
-        div class = "col" >
+        div className = "col" >
         <
         input type = "text"
         id = "nombre"
         name = "nombre"
-        class = "form-control"
-        placeholder = "Nombre" >
+        className = "form-control"
+        placeholder = "Nombre" / >
         <
-        /div>   <
-        div class = "col" >
+        /div>  <
+        div className = "col" >
         <
-        select class = "form-control"
+        select className = "form-control"
         id = "dueno" >
         <
-        option > Dueño < /option>   <
+        option > Dueño < /option>  <
         option > Esteban < /option>  <
-        option > Julián < /option>   <
-        option > Jhon < /option>   <
-        option > Felix < /option>   <
-        option > Camilo < /option>   <
-        /select>   <
-        /div>   <
-        /div>   <
-        /form>   <
-        /div>   <
-        div class = "modal-footer" >
+        option > Julián < /option>  <
+        option > Jhon < /option>  <
+        option > Felix < /option>  <
+        option > Camilo < /option>  <
+        /select>  <
+        /div>  <
+        /div>  <
+        /form>  <
+        /div>  <
+        div className = "modal-footer" >
         <
         button type = "button"
-        class = "btn btn-secondary"
-        data - dismiss = "modal" > Cerrar < /button>   <
+        className = "btn btn-secondary"
+        data - dismiss = "modal" > Cerrar < /button>  <
         button type = "button"
         class = "btn btn-primary"
         data - dismiss = "modal"
-        id = "btn-guardar" > Crear < /button>   <
-        /div>   <
-        /div>   <
-        /div>   <
+        id = "btn-guardar" > Crear < /button>  <
+        /div> <
         /div>  <
-        /div>)
-    }
+        /div>  <
+        /div> <
+        />
+    );
+}
+export default Mascotas;
