@@ -1,10 +1,11 @@
 import React from "react";
 import "./App.css";
-import Mascotas from "./mascotas";
+import Pagina from "./Pagina";
+
 
 function App() {
 
-    return <Mascotas / >
+    return <Pagina / >
 }
 
 export default App;
