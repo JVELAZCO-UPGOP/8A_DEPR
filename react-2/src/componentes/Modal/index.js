@@ -16,7 +16,7 @@ const duenos = [
     { valor: "Claudia", etiqueta: "Claudia" },
     { valor: "Favio", etiqueta: "Favio" },
     { valor: "Jesus", etiqueta: "Jesus" },
-    { valor: "Celia", etiqueta: "Celia" },
+    { valor: "Cecilia", etiqueta: "Cecilia" },
 ];
 
 function Modal({ cambiarModal = () => {} }) {
@@ -42,8 +42,8 @@ function Modal({ cambiarModal = () => {} }) {
         Select options = { tiposMascota }
         nombreCampo = "Tipo animal" / >
         <
-        /div> <
-        /div> <
+        /div> < /
+        div > <
         div className = "form-row" >
         <
         div className = "col" >
@@ -57,17 +57,17 @@ function Modal({ cambiarModal = () => {} }) {
         Select options = { duenos }
         nombreCampo = "dueño" / >
         <
-        /div> <
-        /div> <
-        /form> <
-        /div> <
+        /div> < /
+        div > <
+        /form> < /
+        div > <
         ModalFooter cambiarModal = { cambiarModal }
-        /> <
-        /div> <
-        /div> <
-        /div> <
-        div class = "modal-backdrop fade show" > < /div> <
-        />
+        /> < /
+        div > <
+        /div> < /
+        div > <
+        div class = "modal-backdrop fade show" > < /div> < /
+        >
     );
 }
 
